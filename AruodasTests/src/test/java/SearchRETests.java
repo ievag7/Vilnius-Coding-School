@@ -45,7 +45,7 @@ public class SearchRETests {
         Assert.assertEquals(actual, "Užsakyti");
     }
 
-    @Test  //ar reikalingas testas. Kaip sužinoti description max length?
+    @Test
     public void negativeDescription25KCharacters() {
         SearchRE sre = new SearchRE("Vilnius", "Vilniaus m.", "Antakalnis", "A. Domaševičiaus g.", generateRndStr(25000), new String[]{"C:\\Users\\Ieva\\Desktop\\abandoned.jpg", "C:\\Users\\Ieva\\Desktop\\alps.jpg"}, "https://www.youtube.com/watch?v=49q1u8qtlH8", "www.tour3d.com", "500", "67777567", "email@as.com", new boolean[]{true, true, true}, "Butai nuomotis");
         sre.fill();
@@ -63,7 +63,7 @@ public class SearchRETests {
         Assert.assertEquals(actual, "Užsakyti");
     }
 
-    @Test  //tikiuosi, kad bus error message, kai įkeliu tokią pačią nuotrauką. Pagal tokį patį pav gali būti nuotraukos. Tiksliansiam testui reiktų lyginti pagal vaizdą
+    @Test  //tikiuosi, kad bus error message, kai įkeliu tokią pačią nuotrauką. Pagal tokį patį pav gali būti nuotraukos. Tiksliansiam testui reiktų lyginti pagal vaizdą.
     public void negativeSamePhoto() {
         SearchRE sre = new SearchRE("Vilnius", "Vilniaus m.", "Antakalnis", "A. Domaševičiaus g.", "Ieškau buto", new String[]{"C:\\Users\\Ieva\\Desktop\\abandoned.jpg", "C:\\Users\\Ieva\\Desktop\\abandoned.jpg"}, "https://www.youtube.com/watch?v=49q1u8qtlH8", "www.tour3d.com", "500", "67777567", "email@as.com", new boolean[]{true, true, true}, "Butai nuomotis");
         sre.fill();
