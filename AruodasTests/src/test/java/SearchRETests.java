@@ -52,7 +52,7 @@ public class SearchRETests {
 
         System.out.println(driver.findElement(By.name("notes_lt")).getAttribute("value").length());
         String actual = driver.findElement(By.id("btPlanChooseOrder")).getText();
-//        Assert.assertEquals(actual, "Užsakyti");
+        Assert.assertEquals(actual, "Užsakyti");
     }
 
     @Test
@@ -63,15 +63,7 @@ public class SearchRETests {
         Assert.assertEquals(actual, "Užsakyti");
     }
 
-    @Test  //tikiuosi, kad bus error message, kai įkeliu tokią pačią nuotrauką. Pagal tokį patį pav gali būti nuotraukos. Tiksliansiam testui reiktų lyginti pagal vaizdą.
-    public void negativeSamePhoto() {
-        SearchRE sre = new SearchRE("Vilnius", "Vilniaus m.", "Antakalnis", "A. Domaševičiaus g.", "Ieškau buto", new String[]{"C:\\Users\\Ieva\\Desktop\\abandoned.jpg", "C:\\Users\\Ieva\\Desktop\\abandoned.jpg"}, "https://www.youtube.com/watch?v=49q1u8qtlH8", "www.tour3d.com", "500", "67777567", "email@as.com", new boolean[]{true, true, true}, "Butai nuomotis");
-        sre.fill();
-//        String actual = driver.findElement(By.id("btPlanChooseOrder")).getText();
-//        Assert.assertNotEquals(actual, "Užsakyti");
-    }
-
-    @Test //nuotraukas, kurios yra virš 36 apveda raudonu rėmeliu, įkelia tik leistiną skaičių ir testas passina. Ištryniau PhoNo, kad galėčiau pažiūrėti raudoną įsspėjimą atsirandantį virš nuotraukų. realiame teste reiktų lyginti rezultatą, ar galutiniame skelbime įkelia tas pačias nuotraukas, kaip ir teste
+    @Test
     public void positivePhotos37() {
         SearchRE sre = new SearchRE("Vilnius", "Vilniaus m.", "Antakalnis", "A. Domaševičiaus g.", "Ieškau buto", new String[]{"C:\\Users\\Ieva\\Desktop\\abandoned.jpg", "C:\\Users\\Ieva\\Desktop\\alps.jpg","C:\\Users\\Ieva\\Desktop\\abandoned.jpg", "C:\\Users\\Ieva\\Desktop\\abandoned.jpg", "C:\\Users\\Ieva\\Desktop\\abandoned.jpg", "C:\\Users\\Ieva\\Desktop\\abandoned.jpg", "C:\\Users\\Ieva\\Desktop\\abandoned.jpg", "C:\\Users\\Ieva\\Desktop\\abandoned.jpg", "C:\\Users\\Ieva\\Desktop\\abandoned.jpg", "C:\\Users\\Ieva\\Desktop\\abandoned.jpg", "C:\\Users\\Ieva\\Desktop\\abandoned.jpg", "C:\\Users\\Ieva\\Desktop\\abandoned.jpg", "C:\\Users\\Ieva\\Desktop\\abandoned.jpg", "C:\\Users\\Ieva\\Desktop\\abandoned.jpg", "C:\\Users\\Ieva\\Desktop\\abandoned.jpg", "C:\\Users\\Ieva\\Desktop\\abandoned.jpg", "C:\\Users\\Ieva\\Desktop\\abandoned.jpg", "C:\\Users\\Ieva\\Desktop\\abandoned.jpg", "C:\\Users\\Ieva\\Desktop\\abandoned.jpg", "C:\\Users\\Ieva\\Desktop\\abandoned.jpg", "C:\\Users\\Ieva\\Desktop\\abandoned.jpg", "C:\\Users\\Ieva\\Desktop\\abandoned.jpg","C:\\Users\\Ieva\\Desktop\\abandoned.jpg", "C:\\Users\\Ieva\\Desktop\\abandoned.jpg", "C:\\Users\\Ieva\\Desktop\\abandoned.jpg", "C:\\Users\\Ieva\\Desktop\\abandoned.jpg","C:\\Users\\Ieva\\Desktop\\abandoned.jpg","C:\\Users\\Ieva\\Desktop\\abandoned.jpg","C:\\Users\\Ieva\\Desktop\\abandoned.jpg","C:\\Users\\Ieva\\Desktop\\abandoned.jpg","C:\\Users\\Ieva\\Desktop\\abandoned.jpg","C:\\Users\\Ieva\\Desktop\\abandoned.jpg","C:\\Users\\Ieva\\Desktop\\abandoned.jpg","C:\\Users\\Ieva\\Desktop\\abandoned.jpg","C:\\Users\\Ieva\\Desktop\\abandoned.jpg","C:\\Users\\Ieva\\Desktop\\abandoned.jpg","C:\\Users\\Ieva\\Desktop\\abandoned.jpg"}, "https://www.youtube.com/watch?v=49q1u8qtlH8", "www.tour3d.com", "500", "", "email@as.com", new boolean[]{true, true, true}, "Butai nuomotis");
         sre.fill();
@@ -79,20 +71,20 @@ public class SearchRETests {
         Assert.assertEquals(actual, "Užsakyti");
     }
 
-    @Test //Kodėl neužpildo tolimesnių laukų? Ką rašyti į assert? Nežinau ar testas passina, kai nuotraukos nėra privalomos
+    @Test
     public void negativePhotoSmallerThan433x460() {
         SearchRE sre = new SearchRE("Vilnius", "Vilniaus m.", "Antakalnis", "A. Domaševičiaus g.", "Ieškau buto", new String[]{"C:\\Users\\Ieva\\Desktop\\sea1.jpg"}, "https://www.youtube.com/watch?v=49q1u8qtlH8", "www.tour3d.com", "500", "67777567", "email@as.com", new boolean[]{true, true, true}, "Butai nuomotis");
         sre.fill();
-//        String actual = driver.findElement(By.id("btPlanChooseOrder")).getText();
-//        Assert.assertNotEquals(actual, "Užsakyti");
+        String actual = driver.findElement(By.id("btPlanChooseOrder")).getText();
+        Assert.assertNotEquals(actual, "Užsakyti");
     }
 
-    @Test  //Kodėl neužpildo tolimesnių laukų?
+    @Test
     public void negativePdfFileInPhotoField() {
         SearchRE sre = new SearchRE("Vilnius", "Vilniaus m.", "Antakalnis", "A. Domaševičiaus g.", "Ieškau buto", new String[]{"C:/Users/Ieva/Desktop/sample.pdf", "C:\\Users\\Ieva\\Desktop\\abandoned.jpg"}, "https://www.youtube.com/watch?v=49q1u8qtlH8", "www.tour3d.com", "500", "67777567", "email@as.com", new boolean[]{true, true, true}, "Butai nuomotis");
         sre.fill();
-//        String actual = driver.findElement(By.id("btPlanChooseOrder")).getText();
-//        Assert.assertNotEquals(actual, "Užsakyti");
+        String actual = driver.findElement(By.id("btPlanChooseOrder")).getText();
+        Assert.assertNotEquals(actual, "Užsakyti");
     }
 
     @Test
@@ -119,7 +111,7 @@ public class SearchRETests {
         Assert.assertEquals(actual, "Užsakyti");
     }
 
-    @Test  //kodėl testas žalias, jei bloga nuoroda ir nesuveikė submit mygtukas.(užkomentavus assert)
+    @Test
     public void negativeWrongTour3dLink() {
         SearchRE sre = new SearchRE("Vilnius", "Vilniaus m.", "Antakalnis", "A. Domaševičiaus g.", "Ieškau buto", new String[]{"C:\\Users\\Ieva\\Desktop\\abandoned.jpg", "C:\\Users\\Ieva\\Desktop\\alps.jpg"}, "https://www.youtube.com/watch?v=49q1u8qtlH8", "www.tour3dcom", "500", "67777567", "email@as.com", new boolean[]{true, true, true}, "Butai nuomotis");
         sre.fill();
@@ -136,7 +128,7 @@ public class SearchRETests {
         Assert.assertEquals(actual, "Neteisinga kaina");
     }
 
-    @Test //ką daryti su assert kai įrašai neteisingą reikšmę, bet ją suformatuoja teisingai ir passina
+    @Test
     public void negativeMinusPrice() {
         SearchRE sre = new SearchRE("Vilnius", "Vilniaus m.", "Antakalnis", "A. Domaševičiaus g.", "Ieškau buto", new String[]{"C:\\Users\\Ieva\\Desktop\\abandoned.jpg", "C:\\Users\\Ieva\\Desktop\\alps.jpg"}, "https://www.youtube.com/watch?v=49q1u8qtlH8", "www.tour3d.com", "-500", "67777567", "email@as.com", new boolean[]{true, true, true}, "Butai nuomotis");
         sre.fill();
@@ -144,7 +136,7 @@ public class SearchRETests {
         Assert.assertEquals(actual, "Užsakyti");
     }
 
-    @Test //raides iškart automatiškai ištrina
+    @Test
     public void negativePriceOnlyLetters() {
         SearchRE sre = new SearchRE("Vilnius", "Vilniaus m.", "Antakalnis", "A. Domaševičiaus g.", "Ieškau buto", new String[]{"C:\\Users\\Ieva\\Desktop\\abandoned.jpg", "C:\\Users\\Ieva\\Desktop\\alps.jpg"}, "https://www.youtube.com/watch?v=49q1u8qtlH8", "www.tour3d.com", "ASdfghjjkl", "67777567", "email@as.com", new boolean[]{true, true, true}, "Butai nuomotis");
         sre.fill();
@@ -266,12 +258,6 @@ public class SearchRETests {
             Assert.fail("Error message element not found or not visible");
         }
     }
-
-
-
-
-
-
 
 
 
